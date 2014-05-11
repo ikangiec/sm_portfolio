@@ -1,17 +1,20 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'rails/all'
+
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "sprockets/railtie"
+# require "active_model/railtie"
+# require "active_record/railtie"
+# require "action_controller/railtie"
+# require "action_mailer/railtie"
+# require "action_view/railtie"
+# require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+# Bundler.require(*Rails.groups)
+Bundler.require(:default, Rails.env)
 
 module SmPortfolio
   class Application < Rails::Application
@@ -28,7 +31,7 @@ module SmPortfolio
     # config.i18n.default_locale = :de
 
     config.generators do |g|
-      g.test_framework :minitest, spec: true, fixture: false
+      g.test_framework :minitest, spec: true
     end
   end
 end

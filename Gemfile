@@ -25,10 +25,10 @@ group :doc do
   gem "sdoc", "~> 0.4.0", require: false # bundle exec rake doc:rails generates the API under doc/api.
 end
 
-# group :test do
-#   gem "minitest-rails-capybara"
-#   gem "poltergeist"
-# end
+group :test do
+  gem "minitest-rails-capybara"
+  # gem "poltergeist"
+end
 
 group :test, :development do
   gem "simplecov", require: false
