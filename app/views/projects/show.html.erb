@@ -1,4 +1,6 @@
 <h2><%= @project.title %></h2>
 <p>Description: <%= @project.description %>
 
+<p><%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
 
