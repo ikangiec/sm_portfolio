@@ -1,6 +1,6 @@
 require "test_helper"
 
-feature "CanAccessHome" do
+feature "As the visitor, I want to see the homepage of the website" do
   scenario "homepage has content" do
     visit root_path
     page.must_have_content "Sherman"
