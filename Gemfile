@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem "devise"
 gem "jbuilder", "~> 2.0" # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jquery-rails" # Use jquery as the JavaScript library
 gem "minitest-rails"
