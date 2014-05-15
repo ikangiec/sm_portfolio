@@ -28,6 +28,8 @@ end
 
 group :test do
   gem "minitest-rails-capybara"
+  # gem "database_cleaner"
+  gem "launchy"
   # gem "poltergeist"
 end
 
