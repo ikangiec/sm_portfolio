@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SmPortfolio</title>
+  <title><%= content_for?(:title) ? yield(:title) : "Sherman's Portfolio" %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+  <p><%= link_to "Home", root_path %> |
+  <%= link_to "Work", projects_path %> |
+  <%= link_to "Blog", posts_path %> |
+  <% if current_user.present? %>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "Sign Up", new_user_registration_path %> |
+    <%= link_to "Sign In", new_user_session_path %>
+  <% end %>
+  </p>
+
   <% flash.each do |key, value| %>
     <div class="alert-box round <%= flash_class(key) %>">
       <%= value %>
     </div>
-  <% end %>
-
-  <% if current_user.present? %>
-    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "Sign Up", new_user_registration_path %><br>
-    <%= link_to "Sign In", new_user_session_path %>
   <% end %>
 
   <%= yield %>

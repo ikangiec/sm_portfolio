@@ -12,14 +12,20 @@ require "minitest/pride"
 # require "minitest/colorize"
 
 class ActiveSupport::TestCase
-    ActiveRecord::Migration.check_pending!
-    ActiveRecord::Migration.maintain_test_schema!
+  ActiveRecord::Migration.check_pending!
+  # ActiveRecord::Migration.maintain_test_schema!
 
-    # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
+  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def sign_in
+    visit new_user_session_path
+    fill_in "Email", with: users(:sherman).email
+    fill_in "Password", with: "password"
+    click_on "Sign in"
+  end
 end

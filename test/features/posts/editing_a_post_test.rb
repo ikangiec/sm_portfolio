@@ -3,6 +3,7 @@ require "test_helper"
 feature "editing a post" do
   scenario "submit updates to an existing post" do
     # Given an existing post
+    sign_in
     visit post_path(posts(:fs))
 
     # When I click edit and submit changed data
