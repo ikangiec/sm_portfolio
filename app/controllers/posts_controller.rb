@@ -6,7 +6,11 @@ class PostsController < ApplicationController
 
   def index
     # @posts = Post.all
-    @posts = policy_scope(Post)
+    if current_user
+      @posts = policy_scope(Post)
+    else
+      @posts = Post.where(published: true)
+    end
   end
 
   def new
@@ -26,6 +30,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def edit

@@ -1,3 +1,4 @@
+<article>
 <h2><%= @post.title %></h2>
 <p>Body: <%= @post.body %></p>
 
@@ -14,5 +15,8 @@
 <p><% if policy(@post).update? %>
   <%= link_to 'Edit', edit_post_path(@post) %>
   <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></p>
+</article>
 
-<%= link_to "Back", posts_path %>
+<%= render "comments/form" %>
+
+<%= link_to "Back To Blog", posts_path %>
