@@ -6,8 +6,10 @@
     <p><%= post.body %></p>
     <div class="nav">
       <%= link_to 'Show', post %> |
-      <%= link_to 'Edit', edit_post_path(post) %> |
-      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% if current_user.present? && (current_user.editor? || current_user.author?) %>
+        <%= link_to 'Edit', edit_post_path(post) %> |
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </div>
   </div>
 <% end %>

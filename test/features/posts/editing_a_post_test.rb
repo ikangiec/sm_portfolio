@@ -4,10 +4,12 @@ feature "editing a post" do
   scenario "submit updates to an existing post" do
     # Given an existing post
     sign_in
-    visit post_path(posts(:fs))
+    visit posts_path(posts(:fs))
 
     # When I click edit and submit changed data
-    click_on "Edit"
+    page.find("div:last div:last").click_on "Edit"
+    # find("a", :text => "Edit", match: :first).click
+    # page.find("tbody tr:last").click_on "Edit"
     fill_in "Body", with: "Becoming a Feng Shui Master"
     click_on "Update Post"
 

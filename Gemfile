@@ -4,6 +4,7 @@ gem "devise"
 gem "jbuilder", "~> 2.0" # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jquery-rails" # Use jquery as the JavaScript library
 gem "minitest-rails"
+gem "pundit"
 gem "rails", "4.1.1" # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem "sqlite3" # Use sqlite3 as the database for Active Record
 gem "therubyracer", platforms: :ruby
