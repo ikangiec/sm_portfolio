@@ -34,7 +34,7 @@ group :test do
 end
 
 group :test, :development do
-  gem "simplecov", require: false
+  gem "simplecov", "~> 0.7.1", require: false
 end
 
 group :development do
