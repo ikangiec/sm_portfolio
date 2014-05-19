@@ -10,14 +10,26 @@ xl:
   author: sherman
   published: true
 
-pu:
+published:
   title: Intro to Published Post
   body: It's all about published posts!
-  author: sherman
+  author: author
   published: true
 
-un:
+unpublished:
   title: Intro to Unpublished Post
   body: It's all about unpublished posts!
-  author: kc
+  author: author
+  published: false
+
+by_editor:
+  title: Editor's post
+  body: Editor's post message
+  author: editor
+  published: false
+
+by_author:
+  title: Author's post
+  body: Author's post message
+  author: author
   published: false

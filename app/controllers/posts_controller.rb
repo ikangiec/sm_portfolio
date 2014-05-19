@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params) # @post = Post.new(params[:post])
+    authorize @post
     if @post.save
       current_user.posts << @post
       flash[:notice] = "Post has been created."
@@ -40,7 +41,9 @@ class PostsController < ApplicationController
     # if @post.update_attributes(post_params)
     #   redirect_to @post, notice: 'Post was successfully updated.'
     # @post = Post.find(params[:id])
-    if @post.update(post_params)
+    authorize @post
+    # if @post.update(post_params)
+    if @post.update_attributes(post_params)
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
@@ -48,6 +51,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post
     @post.destroy
 
     redirect_to posts_url
@@ -60,6 +64,7 @@ private
 
   def post_params
     # params.require(:post).permit(:title, :body, (:published if current_user.role == "editor"))
-    params.require(:post).permit(:title, :body, (:published if PostPolicy.new(current_user, @post).publish?))
+    # params.require(:post).permit(:title, :body, (:published if PostPolicy.new(current_user, @post).publish?))
+    params.require(:post).permit(:title, :body, :author_id, :published)
   end
 end

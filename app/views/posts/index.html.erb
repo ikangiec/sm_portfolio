@@ -5,14 +5,17 @@
     <h3><%= post.title %></h3>
     <p><%= post.body %></p>
     <div class="nav">
-      <%= link_to 'Show', post %> |
-      <% if current_user.present? && (current_user.editor? || current_user.author?) %>
-        <%= link_to 'Edit', edit_post_path(post) %> |
-        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Show', post %>
+      <% if policy(post).update? %>
+        | <%= link_to 'Edit', edit_post_path(post) %>
+      <% end %>
+      <% if policy(post).destroy? %>
+        | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= "Published" if post.published %>
       <% end %>
     </div>
   </div>
 <% end %>
 
 <br />
-<%= link_to 'New Post', new_post_path, class: "button radius" %>
+<%= link_to 'New Post', new_post_path, class: "button radius" if policy(Post).create? %>

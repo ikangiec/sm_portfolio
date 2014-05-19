@@ -1,3 +1,4 @@
+# A post policy is a Pundit class to manage blog posts
 class PostPolicy < ApplicationPolicy
   attr_reader :user, :post
 
@@ -10,17 +11,31 @@ class PostPolicy < ApplicationPolicy
   end
 
   def publish?
-    @user.editor?
+    if user.present?
+      user.editor?
+    end
   end
 
   def create?
-    @user.author? || @user.editor?
+    if user.present?
+      user.author? || user.editor?
+    end
+  end
+  alias_method :update?, :create?
+
+  def destroy?
+    if user.present?
+      return true if user.editor?
+      user.id == post.author_id
+    end
   end
 
   class Scope < Struct.new(:user, :scope)
     def resolve
-      if user.present? && user.editor?
+      if user.editor?
         scope.all
+      elsif user.author?
+        scope.where(author_id: user.id)
       else
         scope.where(published: true)
       end
