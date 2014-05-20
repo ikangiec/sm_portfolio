@@ -1,19 +1,21 @@
 source "https://rubygems.org"
 
 gem "devise"
+gem "figaro"
 gem "jbuilder", "~> 2.0" # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jquery-rails" # Use jquery as the JavaScript library
 gem "minitest-rails"
+gem "omniauth-twitter"
 gem "pundit"
 gem "rails", "4.1.1" # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem "sqlite3" # Use sqlite3 as the database for Active Record
 gem "therubyracer", platforms: :ruby
 gem "turbolinks"
 
-# group :production do
-#   gem "pg"
-#   gem "rails_12factor"
-# end
+group :production do
+  gem "pg"
+  gem "rails_12factor"
+end
 
 # Gems used only for assets and not required in production environments by default.
 # allow everywhere for now cause we are allowing asset debugging in prd
