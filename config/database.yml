@@ -23,6 +23,7 @@ test:
 production:
   # <<: *default
   adapter: postgresql
-  database: db/production.sqlite3
+  database: my_db
+  encoding: unicode
   pool: 5
   timeout: 5000
