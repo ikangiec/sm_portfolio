@@ -8,7 +8,6 @@ gem "minitest-rails"
 gem "omniauth-twitter"
 gem "pundit"
 gem "rails", "4.1.1" # Bundle edge Rails instead: gem "rails", github: "rails/rails"
-gem "sqlite3" # Use sqlite3 as the database for Active Record
 gem "therubyracer", platforms: :ruby
 gem "turbolinks"
 
@@ -37,6 +36,7 @@ group :test do
 end
 
 group :test, :development do
+  gem "sqlite3" # Use sqlite3 as the database for Active Record
   gem "simplecov", "~> 0.7.1", require: false
 end
 
