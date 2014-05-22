@@ -36,6 +36,8 @@ group :test do
 end
 
 group :test, :development do
+  gem "pry-rails"
+  gem "pry-doc"
   gem "sqlite3" # Use sqlite3 as the database for Active Record
   gem "simplecov", "~> 0.7.1", require: false
 end
@@ -43,7 +45,6 @@ end
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
-  gem "pry-rails"
   gem "spring" # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 end
 

@@ -7,7 +7,7 @@ feature "As an author or editor, I want to approve comments so that my blog does
     fill_in :comment_author_url,   with: "http://trollsite.example.com"
     fill_in :comment_author_email, with: "troll@example.com"
     fill_in :comment_content,      with: "a spammy comment"
-    click_on "Submit comment for approval"
+    click_on "New Comment"
   end
 
   scenario "comments do not display until approved" do
@@ -20,15 +20,16 @@ feature "As an author or editor, I want to approve comments so that my blog does
     page.wont_have_content "spammy"
   end
 
-  scenario "Editor can Approve comments" do
+  scenario "Editor can approve comments" do
     # Given a pending comment (in before)
     # And I am signed in as an editor
     sign_in(:editor)
+    new_comment
 
     # When I visit the comment moderation page
-    pending "after oauth implementation"
-
+    # pending "after oauth implementation"
     visit post_comments_path
+
     # I can approve comments
     comment_id = current_url.split('/').last
     click_link("Edit", href: "/comments#{comment_id}/edit")

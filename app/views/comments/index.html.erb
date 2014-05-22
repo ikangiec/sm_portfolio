@@ -1,0 +1,22 @@
+<h2>Admin Comments</h2>
+
+<% @comments.each do |comment| %>
+  <div <%= raw 'class="warning"' unless comment.approved? %> id="<%= dom_id(comment) %>">
+    <p>Author: <%= comment.author %></p>
+    <p>URL: <%= comment.author_url %></p>
+    <p>Email: <%= comment.author_email %></p>
+    <p>Referrer: <%= comment.referrer %></p>
+    <%= link_to 'Edit', edit_comment_path(comment) %>
+  </div>
+  <div class="nav">
+    <% if comment.approved? %>Approved
+    <% else %>
+      <%= button_to 'Approve', comment_path(comment, comment: { approved: true }), method: :put %>
+    <% end %>
+    <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  <div class="comment_content"><%= comment.content %></div>
+<% end %>
+
+<br />
+<%= link_to 'Post', posts_path, class: "button radius" %>

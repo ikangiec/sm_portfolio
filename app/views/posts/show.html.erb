@@ -17,6 +17,10 @@
   <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></p>
 </article>
 
+<% if @post.comments.any? %>
+  <%= render @post.comments %>
+<% end %>
+
 <%= render "comments/form" %>
 
 <p><%= link_to "Back To Blog", posts_path %></p>
