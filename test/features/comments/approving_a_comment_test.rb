@@ -33,7 +33,6 @@ feature "As an author or editor, I want to approve comments so that my blog does
     # I can approve comments
     comment_id = Comment.last.id
     comment_row = "div#comment_#{comment_id}"
-    save_and_open_page
     page.find(comment_row).click_on("Approve")
 
     # comment_id = current_url.split('/').last
