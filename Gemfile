@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+# ruby "2.1.2"
+
 gem "devise"
 gem "figaro"
 gem "jbuilder", "~> 2.0" # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -31,11 +33,12 @@ end
 group :test do
   gem "minitest-rails-capybara"
   # gem "database_cleaner"
-  gem "launchy"
-  # gem "poltergeist"
+  gem "poltergeist"
 end
 
 group :test, :development do
+  gem "faker"
+  gem "launchy"
   gem "pry-rails"
   gem "pry-doc"
   gem "sqlite3" # Use sqlite3 as the database for Active Record

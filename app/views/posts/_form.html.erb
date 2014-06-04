@@ -12,14 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title, title: "Full Post Title", data: {tooltip: true} %><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label :body, title: "Full Post Body", data: {tooltip: true} %><br />
     <%= f.text_area :body %>
   </div>
-  <% if policy(Post).publish? #if current_user.role == "editor" %>
+  <% if PostPolicy.new(current_user, @post).publish? #if policy(Post).publish? #if current_user.role == "editor" %>
     <div class="field">
       <%= f.label :published, title: "Is this post published?", data: {tooltip: true} %><br>
       <%= f.check_box :published %>

@@ -4,7 +4,7 @@
 
 <p id="author">
   <b>By:</b>
-  <%= @post.author.email %>
+  <%= @post.author ? @post.author.email : "Unknown" %>
 </p>
 
 <p id="status">
@@ -13,12 +13,13 @@
 </p>
 
 <p><% if policy(@post).update? %>
-  <%= link_to 'Edit', edit_post_path(@post) %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
   <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></p>
 </article>
 
 <% if @post.comments.any? %>
-  <%= render @post.comments %>
+  <h3>Approved comment(s) for this post:</h3>
+  <%= render @comments %>
 <% end %>
 
 <%= render "comments/form" %>

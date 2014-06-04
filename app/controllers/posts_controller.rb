@@ -6,11 +6,11 @@ class PostsController < ApplicationController
 
   def index
     # @posts = Post.all
-    if current_user
+    # if current_user
       @posts = policy_scope(Post)
-    else
-      @posts = Post.where(published: true)
-    end
+    # else
+      # @posts = Post.where(published: true)
+    # end
   end
 
   def new
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params) # @post = Post.new(params[:post])
-    authorize @post
+    # authorize @post
     if @post.save
       current_user.posts << @post
       flash[:notice] = "Post has been created."
@@ -31,6 +31,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @commentable = @post
+    @comments = @commentable.comments
     @comment = Comment.new
   end
 
@@ -41,7 +43,7 @@ class PostsController < ApplicationController
     # if @post.update_attributes(post_params)
     #   redirect_to @post, notice: 'Post was successfully updated.'
     # @post = Post.find(params[:id])
-    authorize @post
+    # authorize @post
     # if @post.update(post_params)
     if @post.update_attributes(post_params)
       redirect_to @post, notice: 'Post was successfully updated.'
@@ -51,20 +53,22 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    authorize @post
+    # authorize @post
     @post.destroy
 
     redirect_to posts_url
   end
 
-private
-  def set_post
-    @post = Post.find(params[:id])
-  end
+  private
+    def set_post
+      @post = Post.find(params[:id])
+    end
 
-  def post_params
-    # params.require(:post).permit(:title, :body, (:published if current_user.role == "editor"))
-    # params.require(:post).permit(:title, :body, (:published if PostPolicy.new(current_user, @post).publish?))
-    params.require(:post).permit(:title, :body, :author_id, :published)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def post_params
+      # params.require(:post).permit(:title, :body, (:published if current_user.role == "editor"))
+      # params.require(:post).permit(:title, :body, (:published if PostPolicy.new(current_user, @post).publish?))
+      # params.require(:post).permit(:title, :body, :author_id, :published)
+      params.require(:post).permit(:title, :body, (:published if current_user.editor?))
+    end
 end

@@ -5,7 +5,8 @@ fs:
   published: true
 
 xl:
-  title: Intro to Internal Feng Shui
+  # title: Intro to Internal Feng Shui
+  title: <%= Faker::Name.title %>
   body: It's all about internal thinking!
   author: sherman
   published: true

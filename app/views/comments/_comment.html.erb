@@ -1,7 +1,6 @@
 <% if comment.approved? %>
 <div class="comment">
-  <h3>Approved comment(s) for this post:</h3>
-  <p><%= comment.author %> said:</p>
+  <p><%= comment.author %> commented:</p>
   <p><%= comment.content %></p>
 </div>
 <% end %>
