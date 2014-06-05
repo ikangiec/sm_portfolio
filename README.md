@@ -14,6 +14,17 @@ By: [Kangie Chan](http://github.com/ikangiec) - Work in progress.
 
 **Sherman's Personal Portfolio** description can be listed here.
 
+## Installation
+
+Run these commands to try it out.
+
+ ```
+bundle
+cp config/application.example.yml config/application.yml
+rake db:setup
+rails s
+ ```
+
 ## Information
 
 Screenshots of your application below:
