@@ -12,6 +12,15 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
+  get "text/:text" => Dragonfly.app.endpoint { |params, app|
+    app.generate(:text, params[:text], 'font-size' => 42)
+  }
+
+  # TODO: need to come back to customize endpoints later
+  get "image" => Dragonfly.app.endpoint { |params, app|
+    app.fetch_file("some/dir/#{params[:file]}").thumb(params[:size])
+  }
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

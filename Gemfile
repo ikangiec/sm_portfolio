@@ -3,12 +3,15 @@ source "https://rubygems.org"
 # ruby "2.1.2"
 
 gem "devise"
+gem "dragonfly", "~>1.0.5"
+gem "dragonfly-s3_data_store"
 gem "figaro"
 gem "jbuilder", "~> 2.0" # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jquery-rails" # Use jquery as the JavaScript library
 gem "minitest-rails"
 gem "omniauth-twitter"
 gem "pundit"
+gem "rack-cache", require: "rack/cache"
 gem "rails", "4.1.1" # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem "therubyracer", platforms: :ruby
 gem "turbolinks"
