@@ -15,14 +15,13 @@ feature "As a site visitor, I want to comment on Blog Posts so that I can troll 
     page.must_have_content "awaiting moderation"
   end
 
-  # TODO
-  # scenario "invalid comment does not save" do
-  #   # Given a published post (in fixtures)
-  #   # When I visit the post
-  #   visit post_path(posts(:published))
-  #   # And fill out a comment with invalid attributes (like a missing comment)
-  #   click_on "Submit comment for approval"
-  #   # Then I should see errors about what is missing
-  #   page.must_have_content "prohibited this comment from being saved"
-  # end
+  scenario "invalid comment does not save" do
+    # Given a published post (in fixtures)
+    # When I visit the post
+    visit post_path(posts(:published))
+    # And fill out a comment with invalid attributes (like a missing comment)
+    click_on "Submit comment for approval"
+    # Then I should see errors about what is missing
+    page.must_have_content "prohibited this comment from being saved"
+  end
 end

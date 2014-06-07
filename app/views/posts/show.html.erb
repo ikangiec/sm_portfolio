@@ -19,7 +19,7 @@
 
 <% if @post.comments.any? %>
   <h3>Approved comment(s) for this post:</h3>
-  <%= render @comments %>
+  <%= render @commentable.comments %>
 <% end %>
 
 <%= render "comments/form" %>

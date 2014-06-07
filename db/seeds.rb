@@ -20,3 +20,13 @@
 end
 
 puts "Done: Editor Seeded.\n #{@editor.to_yaml}"
+
+@comment = Comment.create(author: "Commenter",
+                         author_url: "commenter.com",
+                         author_email: "commenter@commenter.com",
+                         referrer: "http://localhost:3000/posts",
+                         content: "commenter's comment",
+                         approved: true,
+                         commentable_id: 1,
+                         commentable_type: "Post")
+puts "Created sample comment for #{@comment.author}"
