@@ -11,7 +11,10 @@
     </div>
   <% end %>
 
+  <%#= form_for [@the_comment] do |f| %>
   <%= form_for [@commentable, @comment] do |f| %>
+  <%#= form_for_editor [condition, &block] do |f| %>
+    <%#= f.fields_for :comments do |pf| %>
     <div class="field">
       <%= f.label :author, "Your name" %>
       <%= f.text_field :author %>
@@ -33,5 +36,6 @@
     <div class="actions">
       <%= f.submit "Submit comment for approval" %>
     <div>
+    <%# end %>
   <% end %>
 </div><!-- .comment_form -->

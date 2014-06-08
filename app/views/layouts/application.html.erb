@@ -11,6 +11,9 @@
   <p><%= link_to "Home", root_path %> |
   <%= link_to "Work", projects_path %> |
   <%= link_to "Blog", posts_path %> |
+  <% if current_user.present? && current_user.editor? %>
+    <%= link_to "Admin Comments", comments_path %> |
+  <% end %>
   <% if current_user.present? %>
     <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> |
     <%= current_user.email %>

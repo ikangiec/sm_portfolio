@@ -44,4 +44,29 @@ feature "As an author or editor, I want to approve comments so that my blog does
     visit post_path(posts(:published))
     page.must_have_content "spammy"
   end
+
+  #TODO:
+  scenario "editor can edit comments" do
+  end
+
+  scenario "editor can delete comments" do
+    # Given a pending comment (in before)
+    # And I am signed in as an editor
+    sign_in(:editor)
+    new_comment
+
+    # When I visit the comment moderation page
+    # pending "after oauth implementation"
+    visit comments_path
+
+    # I can delete comments
+    comment_id = Comment.last.id
+    comment_row = "div#comment_#{comment_id}"
+    page.find(comment_row).click_on("Destroy")
+
+    # And the comments display on the blog
+    visit post_path(posts(:published))
+    visit comments_path
+    page.wont_have_content "spammy"
+  end
 end

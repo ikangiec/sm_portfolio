@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :posts do
-    resources :comments
+    resources :comments#,  only: [:create, :index, :new]
   end
 
   # For admin comments

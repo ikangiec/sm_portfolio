@@ -1,6 +1,8 @@
 # Comments are short messages about blog posts
 class CommentsController < ApplicationController
   before_filter :load_commentable, except: [:index]
+  # before_action :set_comment, only: [:show, :edit]
+  before_action :check_comment, only: [:show, :edit, :update, :destroy]
 
   def index
     authorize Comment
@@ -23,16 +25,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
   end
 
   def update
-    if @commentable.class == Comment
-      @the_comment = @commentable
-    else
-      @the_comment = @commentable.comment
-    end
-
     # if @post.update(post_params)
     if @the_comment.update_attributes(comment_params)
       flash[:notice] = 'Comment was successfully updated.'
@@ -47,20 +46,37 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @the_comment.destroy
+
+    redirect_to posts_url
+  end
+
   private
+    def set_comment
+      @comment = Comment.find(params[:id])
+    end
 
-  def comment_params
-    params.require(:comment).permit(:author,
-                                   :author_url,
-                                   :author_email,
-                                   :content,
-                                   :referrer,
-                                   :approved,
-                                   :commentable_id)
-  end
+    def comment_params
+      params.require(:comment).permit(:author,
+                                     :author_url,
+                                     :author_email,
+                                     :content,
+                                     :referrer,
+                                     :approved,
+                                     :commentable_id)
+    end
 
-  def load_commentable
-    @resource, id = request.path.split('/')[1,2]
-    @commentable = @resource.singularize.classify.constantize.find(id)
-  end
+    def load_commentable
+      @resource, id = request.path.split('/')[1,2]
+      @commentable = @resource.singularize.classify.constantize.find(id)
+    end
+
+    def check_comment
+      if @commentable.class == Comment
+        @the_comment = @commentable
+      else
+        @the_comment = @commentable.comment
+      end
+    end
 end
