@@ -8,11 +8,13 @@ gem "dragonfly-s3_data_store"
 gem "figaro"
 gem "jbuilder", "~> 2.0" # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jquery-rails" # Use jquery as the JavaScript library
+gem "mail_form"
 gem "minitest-rails"
 gem "omniauth-twitter"
 gem "pundit"
 gem "rack-cache", require: "rack/cache"
 gem "rails", "4.1.1" # Bundle edge Rails instead: gem "rails", github: "rails/rails"
+gem "simple_form"
 gem "therubyracer", platforms: :ruby
 gem "turbolinks"
 

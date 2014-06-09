@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # For admin comments
   resources :comments
 
+  resources "contacts", only: [:new, :create]
+
   get 'home/index'
 
   get "text/:text" => Dragonfly.app.endpoint { |params, app|
