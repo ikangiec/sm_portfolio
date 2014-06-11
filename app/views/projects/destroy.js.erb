@@ -1,3 +1,12 @@
+// $('#project_<%= @project.id %>').remove();
+
+$(document).on('ajax:success', '.remote-delete', function() {
+  // .parent() is the div containing this "X" delete link
+  // $(this).parent().slideUp();
+  // $(this).closest('.project').slideUp().remove(); // jquery effect faster with the remove()
+  $(this).closest('.project').slideUp();
+});
+
 // $(document).ready(function() {
 //   $('a.remote-delete').click(function() {
 //     // we just need to add the key/value pair for the DELETE method
@@ -6,13 +15,6 @@
 //     return false;
 //   });
 // });
-
-$(document).on('ajax:success', '.remote-delete', function() {
-  // .parent() is the div containing this "X" delete link
-  // $(this).parent().slideUp();
-  // $(this).closest('.project').slideUp().remove(); # jquery effect faster with the remove()
-  $(this).closest('.project').slideUp();
-});
 
 // $(document).ready(function() {
 //   $('.remote-delete').bind('ajax:success', function() {

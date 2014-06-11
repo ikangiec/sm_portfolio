@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => :create
+  skip_before_action :verify_authenticity_token, only: [:create, :edit, :update]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -34,11 +34,17 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
     if @project.update_attributes(project_params)
-      redirect_to @project, notice: 'Project was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.js
+      end
     else
       render :edit
     end

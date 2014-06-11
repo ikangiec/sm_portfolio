@@ -1,0 +1,5 @@
+<h2><%= @project.title %></h2>
+<p>Description: <%= @project.description %>
+<p><%= image_tag @project.image.thumb('600x400#').url if @project.image_stored? %></p>
+
+<p><%= link_to 'Show Less', projects_path %></p>
