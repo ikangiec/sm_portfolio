@@ -13,20 +13,38 @@
                       role: "editor" )
 10.times do
   @post = Post.create(title: Faker::Company.catch_phrase,
-              body:  Faker::Lorem.paragraphs.join("\n"),
-              published: false,
+              body: Faker::Lorem.paragraphs.join("\n"),
+              published: rand(2) == 1,
               author_id: @editor.id)
-  puts "Created sample post #{@post.title}"
+  puts "Created sample post #{@post.title}, published: #{@post.published}"
+end
+
+10.times do
+  @project = Project.create(title: Faker::Commerce.product_name,
+              description: Faker::Lorem.paragraphs.join("\n"))
+  puts "Created sample project #{@project.title}"
+end
+
+# @comment = Comment.create(author: "Commenter",
+#                          author_url: "commenter.com",
+#                          author_email: "commenter@commenter.com",
+#                          referrer: "http://localhost:3000/posts",
+#                          content: "commenter's comment",
+#                          approved: true,
+#                          commentable_id: 1,
+#                          commentable_type: "Post")
+
+5.times do
+  @comment = Comment.create(author: Faker::Name.name,
+                           author_url: Faker::Internet.url,
+                           author_email: Faker::Internet.email,
+                           referrer: "http://localhost:3000/posts",
+                           content: Faker::Lorem.sentence,
+                           approved: rand(2) == 1,
+                           commentable_id: rand(1..2),
+                           commentable_type: "Post")
+  puts "Created sample comment for #{@comment.author}, approved: #{@comment.approved}"
 end
 
 puts "Done: Editor Seeded.\n #{@editor.to_yaml}"
 
-@comment = Comment.create(author: "Commenter",
-                         author_url: "commenter.com",
-                         author_email: "commenter@commenter.com",
-                         referrer: "http://localhost:3000/posts",
-                         content: "commenter's comment",
-                         approved: true,
-                         commentable_id: 1,
-                         commentable_type: "Post")
-puts "Created sample comment for #{@comment.author}"

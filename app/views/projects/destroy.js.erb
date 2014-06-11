@@ -1,0 +1,22 @@
+// $(document).ready(function() {
+//   $('a.remote-delete').click(function() {
+//     // we just need to add the key/value pair for the DELETE method
+//     // as the second argument to the JQuery $.post() call
+//     $.post(this.href, { _method: 'delete' }, null, "script");
+//     return false;
+//   });
+// });
+
+$(document).on('ajax:success', '.remote-delete', function() {
+  // .parent() is the div containing this "X" delete link
+  // $(this).parent().slideUp();
+  // $(this).closest('.project').slideUp().remove(); # jquery effect faster with the remove()
+  $(this).closest('.project').slideUp();
+});
+
+// $(document).ready(function() {
+//   $('.remote-delete').bind('ajax:success', function() {
+//     alert("delete");
+//     $(this).parent().slideUp();
+//   });
+// });
